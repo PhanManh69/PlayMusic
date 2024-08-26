@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MP3Music" parent="Theme.Material3.DayNight.NoActionBar">
+    </style>
+
+    <style name="Theme.MP3Music" parent="Base.Theme.MP3Music">
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

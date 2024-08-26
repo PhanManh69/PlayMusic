@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="mainViewModel"
+            type="com.emanh.mp3music.viewModel.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.MainActivity">
+
+        <TextView
+            android:id="@+id/nameMusic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:textColor="@color/blue"
+            android:textAlignment="center"
+            android:text="@{mainViewModel.currentMusic.nameMusic}"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/nameSinger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/blue"
+            android:textAlignment="center"
+            android:text="@{mainViewModel.currentMusic.nameSinger}"
+            app:layout_constraintTop_toBottomOf="@+id/nameMusic"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/picBackground"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_margin="24dp"
+            android:scaleType="centerCrop"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/pic_background"
+            app:layout_constraintTop_toBottomOf="@+id/nameSinger"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="24dp"
+            app:layout_constraintTop_toBottomOf="@id/picBackground"
+            app:layout_constraintBottom_toTopOf="@id/layoutControl">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listMusic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/viewholder_item_music"/>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/layoutControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="48dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/rewind"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/rewind"
+                app:tint="@color/blue"
+                android:importantForAccessibility="no"/>
+
+            <ImageView
+                android:id="@+id/control"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                app:srcCompat="@drawable/play"
+                app:tint="@color/blue"
+                app:isPlaying="@{mainViewModel.isPlaying()}"
+                android:importantForAccessibility="no"/>
+
+            <ImageView
+                android:id="@+id/forward"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/forward"
+                app:tint="@color/blue"
+                android:importantForAccessibility="no"/>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
